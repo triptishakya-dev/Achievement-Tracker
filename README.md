@@ -225,6 +225,66 @@ prisma/
 
 ---
 
+---
+
+## Next Phase
+
+### Step 1 — Add a Modal to Input Year Data
+
+Build a modal (triggered from the dashboard) that lets the user select or enter a year and fill in:
+
+- **Videos** — upload or link video content for that year
+- **Images** — upload photos/media for the gallery
+- **Achievements** — add achievements point by point (title, category, date)
+- **About** — write a short summary/reflection about that year
+
+---
+
+### Step 2 — POST Route to Save Year Data
+
+Create a `POST /api/year` route that accepts the full year payload and persists it to PostgreSQL via Prisma:
+
+- Creates or upserts the `Year` record
+- Saves all `Achievement` rows linked to that year
+- Saves all `Asset` rows (images/videos) linked to that year
+- Saves the `about` text on the `Year` record
+
+---
+
+### Step 3 — GET Route to Return Fully Populated Year Data
+
+Create a `GET /api/year/[year]` (or by ID) route that returns a year with all relations populated:
+
+- `achievements` — full list of achievement records
+- `assets` — full list of image and video assets
+- `about` — the year summary text
+
+---
+
+### Step 4 — Map API Response Data on the Dashboard
+
+Wire the GET response into the existing frontend components:
+
+- `Gallery` — render images and videos from the assets array
+- `Achievements` — render the timeline from the achievements array
+- `AboutYear` — render the about text
+- `WorkflowCircle` — reflect all years returned from the API
+
+---
+
+### Step 5 — Polish UI/UX
+
+Enhance the look and feel of the dashboard:
+
+- Smooth modal open/close animations
+- Drag-and-drop or preview for image/video uploads
+- Richer achievement timeline (icons, color-coded categories)
+- Responsive layout across mobile, tablet, and desktop
+- Loading skeletons instead of spinners
+- Empty-state illustrations when no data exists for a year
+
+---
+
 ## Tech Stack
 
 | Tool | Purpose |
