@@ -17,6 +17,8 @@ const YearDetail = ({ selectedYear }: YearDetailProps) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!selectedYear) return;
+
     const fetchData = async () => {
       setLoading(true);
       try {
